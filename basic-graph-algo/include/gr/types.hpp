@@ -1,7 +1,7 @@
 #pragma once
 #include<cstdint>
 
-namespace graph {
+namespace gr {
   using NodeId = int32_t;
   using Weight = int32_t;
 

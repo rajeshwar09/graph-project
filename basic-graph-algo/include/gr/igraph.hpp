@@ -2,7 +2,7 @@
 #include <vector>
 #include "types.hpp"
 
-namespace graph {
+namespace gr {
   class IGraph {
     public:
       // Destructor

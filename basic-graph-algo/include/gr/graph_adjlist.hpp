@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include "igraph.hpp"
 
-namespace graph {
+namespace gr {
   class AdjListGraph final: public IGraph {
     private:
       NodeId n_;
