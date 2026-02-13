@@ -14,8 +14,7 @@ namespace gr
 
   inline BFSResult bfs(NodeId src, const IGraph &g)
   {
-
-    // Creating INF value
+    // INF value
     const int INF = 1e9;
 
     // Initialization

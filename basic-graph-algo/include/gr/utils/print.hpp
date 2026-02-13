@@ -5,6 +5,7 @@
 #include "../types.hpp"
 #include "../algorithms/bfs.hpp"
 #include "../algorithms/dfs.hpp"
+#include "../algorithms/sssp.hpp"
 
 namespace gr {
   
@@ -51,6 +52,21 @@ namespace gr {
                 << "\t" << r.etime[i]
                 << "\t" << r.pred[i]
                 << "\n";
+    }
+  }
+
+  // SSSP result printer
+  inline void print_sssp_result(const SSSPResult& r) {
+    const Weight INF = 1e9;
+
+    std::cout << "vertex\tdist\tpred\n";
+    for (size_t i = 0; i < r.dist.size(); i++) {
+      if (r.dist[i] >= INF) {
+        std::cout << i << "\tINF\t" << r.pred[i] << "\n";
+      }
+      else {
+        std::cout << i << "\t" << r.dist[i] << "\t" << r.pred[i] << "\n";
+      }
     }
   }
 }
