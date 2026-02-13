@@ -35,4 +35,8 @@ int main()
   std::cout << "SSSP (src = 0)\n";
   auto sssp_result = gr::sssp(g, 0);
   gr::print_sssp_result(sssp_result);
+
+  std::cout << "APSP\n";
+  auto apsp_result = gr::apsp(g);
+  gr::print_apsp_result(apsp_result);
 }

@@ -6,6 +6,7 @@
 #include "../algorithms/bfs.hpp"
 #include "../algorithms/dfs.hpp"
 #include "../algorithms/sssp.hpp"
+#include "../algorithms/apsp.hpp"
 
 namespace gr {
   
@@ -67,6 +68,25 @@ namespace gr {
       else {
         std::cout << i << "\t" << r.dist[i] << "\t" << r.pred[i] << "\n";
       }
+    }
+  }
+
+  // APSP result printer
+  inline void print_apsp_result(const APSPResult& r) {
+    const Weight INF = 1e9;
+    
+    std::cout << "\t";
+    for (size_t i = 0; i < r.dist.size(); i++) std::cout << i << "\t";
+    std::cout << "\n";
+
+    for (size_t i = 0; i < r.dist.size(); i++) {
+      std::cout << i << "\t";
+
+      for (size_t j = 0; j < r.dist.size(); j++) {
+        if (r.dist[i][j] >= INF) std::cout << "INF\t";
+        else std::cout << r.dist[i][j] << "\t";
+      }
+      std::cout << "\n";
     }
   }
 }
