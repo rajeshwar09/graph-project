@@ -7,6 +7,7 @@
 #include "../algorithms/dfs.hpp"
 #include "../algorithms/sssp.hpp"
 #include "../algorithms/apsp.hpp"
+#include "../algorithms/scc.hpp"
 
 namespace gr {
   
@@ -87,6 +88,15 @@ namespace gr {
         else std::cout << r.dist[i][j] << "\t";
       }
       std::cout << "\n";
+    }
+  }
+
+  // SCC result printer
+  inline void print_scc_result(const SCCResult& r) {
+    std::cout << "num_components = " << r.num_components << "\n";
+    std::cout << "vertex\tcomponent\n";
+    for (size_t i = 0; i < r.components.size(); i++) {
+      std::cout << i << "\t" << r.components[i] << "\n";
     }
   }
 }
