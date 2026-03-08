@@ -4,6 +4,7 @@
 #include "../include/gr/utils/print.hpp"
 #include "../include/gr/algorithms/dfs.hpp"
 #include "../include/gr/algorithms/sssp.hpp"
+#include "../include/gr/algorithms/mst_boruvka.hpp"
 
 int main()
 {
@@ -72,6 +73,18 @@ int main()
   std::cout << "SCC\n";
   auto scc_result = gr::scc(g);
   gr::print_scc_result(scc_result);
+
+  std::cout << "MST\n";
+  gr::CSRBuilder mst_builder(4, false);
+  mst_builder.add_edge(0, 1, 1);
+  mst_builder.add_edge(1, 3, 2);
+  mst_builder.add_edge(0, 3, 3);
+  mst_builder.add_edge(0, 2, 4);
+  mst_builder.add_edge(2, 3, 5);
+
+  gr::CSRGraph mst_graph = mst_builder.build();
+  auto mst_res = gr::mst_boruvka(mst_graph);
+  gr::print_mst_boruvka_result(mst_res);
 
   return 0;
 }

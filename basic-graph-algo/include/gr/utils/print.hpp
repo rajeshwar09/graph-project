@@ -8,6 +8,7 @@
 #include "../algorithms/sssp.hpp"
 #include "../algorithms/apsp.hpp"
 #include "../algorithms/scc.hpp"
+#include "../algorithms/mst_boruvka.hpp"
 
 namespace gr {
   
@@ -98,5 +99,15 @@ namespace gr {
     for (size_t i = 0; i < r.components.size(); i++) {
       std::cout << i << "\t" << r.components[i] << "\n";
     }
+  }
+
+  // MST boruvka result printer
+  inline void print_mst_boruvka_result(const MSTResult& r) {
+    std::cout << "MST edges:\n";
+    std::cout << "u\tv\tw\n";
+    for (const auto& e: r.edges) {
+      std::cout << e.u << "\t" << e.v << "\t" << e.w << "\n";
+    }
+    std::cout << "mst_cost = " << r.mst_cost << "\n";
   }
 }
