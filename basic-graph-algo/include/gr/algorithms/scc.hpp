@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include "../igraph.hpp"
-#include "../graph_adjlist.hpp"
+#include "../graph_csr.hpp"
 #include "../algorithms/dfs.hpp"
 
 namespace gr {
@@ -13,7 +13,11 @@ namespace gr {
   };
 
   // Helper DFS that also updates the component number
-  inline void dfs_for_scc(NodeId u, const IGraph& g, std::vector<uint8_t>& visited, std::vector<int>& components, int cid) {
+  inline void dfs_for_scc(NodeId u,
+                          const IGraph& g,
+                          std::vector<uint8_t>& visited,
+                          std::vector<int>& components,
+                          int cid) {
     visited[u] = 1;
     components[u] = cid;
 
@@ -38,12 +42,7 @@ namespace gr {
     dfs_result = dfs(g);
 
     // Creating transpose of given graph g ie. reversing edges
-    AdjListGraph g_t(n, true);
-    for (NodeId u = 0; u < n; u++) {
-      for (const auto& e: g.neighbors(u)) {
-        g_t.add_edge(e.to, u, e.w);
-      }
-    }
+    CSRGraph g_t = build_transpose_csr(g);
 
     // Sorting vertices in decreasing finish time
     std::vector<NodeId> order(n);

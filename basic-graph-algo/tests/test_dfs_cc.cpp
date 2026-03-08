@@ -1,6 +1,6 @@
 #include "test_common.hpp"
 
-#include "../include/gr/graph_adjlist.hpp"
+#include "../include/gr/graph_csr.hpp"
 #include "../include/gr/algorithms/dfs_cc.hpp"
 
 int main() {
@@ -8,12 +8,14 @@ int main() {
   // Component A: 0-1-2
   // Component B: 3-4
   // Component C: 5 alone
-  gr::AdjListGraph g(6, false); // undirected
+  gr::CSRBuilder builder(6, false); // undirected
 
-  g.add_edge(0, 1);
-  g.add_edge(1, 2);
+  builder.add_edge(0, 1);
+  builder.add_edge(1, 2);
 
-  g.add_edge(3, 4);
+  builder.add_edge(3, 4);
+
+  gr::CSRGraph g = builder.build();
 
   auto r = gr::dfs(g);
 

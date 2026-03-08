@@ -3,7 +3,7 @@
 #include <random>
 #include <queue>
 #include "../igraph.hpp"
-#include "../graph_adjlist.hpp"
+#include "../graph_csr.hpp"
 
 namespace gr {
 
@@ -11,19 +11,6 @@ namespace gr {
     std::vector<int> components;
     int num_components = 0;
   };
-
-  // helper -- build transpose graph
-  inline AdjListGraph build_transpose(const IGraph& G) {
-    NodeId n = G.num_vertices();
-    AdjListGraph GT(n, true);
-    for (NodeId u = 0; u < n; u++) {
-      for (const auto& e: G.neighbors(u)) {
-        GT.add_edge(e.to, u, e.w);
-      }
-    }
-
-    return GT;
-  }
 
   // Forward-Reachable(Graph X, P, start)
   // Also used for Backward-Reachable
@@ -137,7 +124,7 @@ namespace gr {
     result.components.assign(n, -1);
 
     // creating transpose graph
-    AdjListGraph GT = build_transpose(G);
+    CSRGraph GT = build_transpose_csr(G);
 
     // initial P = all verticces
     std::vector<NodeId> P_list(n);

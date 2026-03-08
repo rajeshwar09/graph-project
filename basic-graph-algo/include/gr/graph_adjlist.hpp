@@ -37,10 +37,11 @@ namespace gr {
       }
 
       // Return edges for the node "u"
-      const std::vector<Edge>& neighbors(NodeId u) const override {
+      NeighborRange neighbors(NodeId u) const override {
         check(u);
-        return adj_[u];
+        const auto& vec = adj_[u];
+        // vec.data() is valid even is empty
+        return NeighborRange { vec.data(), vec.data() + vec.size() };
       }
-      
   };
 }

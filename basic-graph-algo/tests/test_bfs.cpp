@@ -1,18 +1,20 @@
 #include "test_common.hpp"
 
-#include "../include/gr/graph_adjlist.hpp"
+#include "../include/gr/graph_csr.hpp"
 #include "../include/gr/algorithms/bfs.hpp"
 
 int main() {
-  gr::AdjListGraph g(6, true);
+  gr::CSRBuilder builder(6, true);
 
   // 0 -> 1 -> 2
   // 0 -> 3 -> 4
   // 5 isolated
-  g.add_edge(0, 1);
-  g.add_edge(1, 2);
-  g.add_edge(0, 3);
-  g.add_edge(3, 4);
+  builder.add_edge(0, 1);
+  builder.add_edge(1, 2);
+  builder.add_edge(0, 3);
+  builder.add_edge(3, 4);
+
+  gr::CSRGraph g = builder.build();
 
   auto r = gr::bfs(0, g);
 
