@@ -9,6 +9,7 @@
 #include "../algorithms/apsp.hpp"
 #include "../algorithms/scc.hpp"
 #include "../algorithms/mst_boruvka.hpp"
+#include "../algorithms/mis.hpp"
 
 namespace gr {
   
@@ -109,5 +110,14 @@ namespace gr {
       std::cout << e.u << "\t" << e.v << "\t" << e.w << "\n";
     }
     std::cout << "mst_cost = " << r.mst_cost << "\n";
+  }
+
+  // MIS result printer
+  inline void print_mis_result(const MISResult& r) {
+    std::cout << "MIS vertices:\n";
+    for (auto v : r.vertices) {
+      std::cout << v << " ";
+    }
+    std::cout << "\n";
   }
 }

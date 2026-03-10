@@ -27,7 +27,7 @@ namespace gr {
     void init(NodeId n) {
       parent.resize(n);
       rank.assign(n, 0);
-      num_compoennts = 0;
+      num_compoennts = n;
 
       for (NodeId i = 0; i < n; i++) {
         parent[i] = i;
