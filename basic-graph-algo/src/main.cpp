@@ -5,6 +5,7 @@
 #include "../include/gr/algorithms/dfs.hpp"
 #include "../include/gr/algorithms/sssp.hpp"
 #include "../include/gr/algorithms/mst_boruvka.hpp"
+#include "../include/gr/algorithms/analytics/pagerank.hpp"
 
 int main()
 {
@@ -85,6 +86,22 @@ int main()
   gr::CSRGraph mst_graph = mst_builder.build();
   auto mst_res = gr::mst_boruvka(mst_graph);
   gr::print_mst_boruvka_result(mst_res);
+
+  
+  std::cout << "PageRankn";
+  {
+    gr::CSRBuilder pr_builder(4, true);
+    pr_builder.add_edge(0, 1);
+    pr_builder.add_edge(0, 2);
+    pr_builder.add_edge(1, 2);
+    pr_builder.add_edge(2, 0);
+    pr_builder.add_edge(2, 3);
+    pr_builder.add_edge(3, 0);
+
+    gr::CSRGraph pr_graph = pr_builder.build();
+    auto pr_res = gr::pagerank(pr_graph, 30, 0.85);
+    gr::print_pagerank_result(pr_res);
+  }
 
   return 0;
 }

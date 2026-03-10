@@ -10,6 +10,7 @@
 #include "../algorithms/scc.hpp"
 #include "../algorithms/mst_boruvka.hpp"
 #include "../algorithms/mis.hpp"
+#include "../algorithms/analytics/pagerank.hpp"
 
 namespace gr {
   
@@ -119,5 +120,15 @@ namespace gr {
       std::cout << v << " ";
     }
     std::cout << "\n";
+  }
+
+  // Pagerank result printer
+  inline void print_pagerank_result(const PageRankResult& r) {
+    std::cout << "PageRank values:\n";
+    std::cout << "vertex\tpr\n";
+    for (size_t v = 0; v < r.pr.size(); v++) {
+      std::cout << v << "\t" << r.pr[v] << "\n";
+    }
+    std::cout << "iterations = " << r.iterations << "\n";
   }
 }
